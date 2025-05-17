@@ -1,23 +1,24 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const taskSchema = new Schema ({
+const taskSchema = new Schema({
+  title: { type: String, required: true },
+  department: { type: String, required: true },
+  requestedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: false
+  },
+  level: {
+    type: String,
+    enum: ["normal", "relevant", "urgent"]
+  },
+  status: {
+    type: String,
+    enum: ["pending", "proccessing", "completed"]
+  }
+});
 
-    title: {Type: String, required: true},
-    department: {Type: String, required: true},
-    requestedBy: {
-        Type: Schema.Types.ObjectId,
-        ref: "User"
-        },
-    level: {Type: String, 
-            enum: ["normal", "relevant", "urgent"]
-            },
-    status: {Type: String,
-            enum: ["pending", "proccessing", "completed"]
-            }
-})
-
-export const task = mongoose.model("Task", taskSchema);
-
+export const Task = mongoose.model("Task", taskSchema);
 
 // Model
 // -categoria (pendiente, en ejecución, completado, delegado a (user))
