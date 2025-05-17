@@ -2,13 +2,13 @@
 import mongoose, {Schema} from "mongoose";
 
 const userSchema = new Schema ({
-    name: {Type: String, required: true, unique: true},
-    email: {Type: String, required: true, unique: true},
+    name: {type: String, required: true, unique: true}, //type sin mayúsc
+    email: {type: String, required: true, unique: true},
     department: String,
-    role: {Type: String, default: user}
+    role: {type: String, default: "user"} //va con comillas
 });
 
-export const user = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
 
 
 
